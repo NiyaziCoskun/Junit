@@ -10,6 +10,11 @@ pipeline  {
          bat "mvn clean install"
          }
        }
+
+       stage('mail'){
+       steps{
+            emailext body: '', recipientProviders: [buildUser()], subject: '', to: 'omeryttnc@gmail.com'         }
+       }
      }
      post{
         always  {
