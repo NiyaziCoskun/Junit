@@ -1,13 +1,20 @@
-pipeline{
+pipeline  {
     agent any
+
     tools{
-tool name: '3.8.4', type: 'maven'
+     maven '3.8.4'
     }
     stages{
-        stage{
-            steps{
-                bat "mvn clean install"
-                  }
-             }
+     stage('Build'){
+       steps{
+         bat "mvn clean install"
          }
-      }
+       }
+     }
+     post{
+        always  {
+        cleanWs()
+     }
+ }
+
+}
