@@ -7,7 +7,8 @@ pipeline  {
     stages{
      stage('Build'){
        steps{
-         junit checksName: 'tag', skipMarkingBuildUnstable: true, testResults: ''
+         bat 'mvn test -Dgroups="dev"'
+"
          }
        }
 
