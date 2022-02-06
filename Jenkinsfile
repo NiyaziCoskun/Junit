@@ -7,7 +7,7 @@ pipeline  {
     stages{
      stage('Build'){
        steps{
-         bat 'mvn test -Dgroups="dev"'
+         bat 'mvn test -P myTag'
 
          }
        }
