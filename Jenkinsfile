@@ -14,13 +14,14 @@ pipeline  {
          }
        }
 
-       stage('mail'){
-       steps{
-            emailext body: '', recipientProviders: [buildUser()], subject: '', to: 'omeryttnc@gmail.com'         }
-       }
+
      }
      post{
+
+
         always  {
+                    emailext body: '', recipientProviders: [buildUser()], subject: '', to: 'omeryttnc@gmail.com'         }
+
         cleanWs()
      }
  }
