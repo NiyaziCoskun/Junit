@@ -13,16 +13,21 @@ pipeline  {
 
          }
        }
-
-       stage('mail'){
-       steps{
-            emailext body: '', recipientProviders: [buildUser()], subject: '', to: 'omeryttnc@gmail.com'         }
+     }
+     post {
+         failure {
+           emailext([
+               body: "${projectName} build failed, see: ${env.BUILD_URL}",
+               mimeType: "text/html",
+               replyTo: "<reply-email>",
+               recipientProviders: [[$class: "CulpritsRecipientProvider"]],
+               subject: "${projectName} build (${sourceBranch}) - Failure",
+               to: "${omeryttnc@gmail.com,omeryttnc@hotmail.com}"
+           ])
+         }
+         always {
+           deleteDir()
+         }
        }
-     }
-     post{
-        always  {
-        cleanWs()
-     }
- }
 
 }
