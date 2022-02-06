@@ -1,32 +1,40 @@
 package package1;
 
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+//import runner.Smoke;
 
-@DisplayName(value = "Myustil test")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@Execution(ExecutionMode.CONCURRENT)
+//@DisplayName(value = "Myustil test")
 public class MyUtilTest {
 
     @Test
-    @Tag(value = "dev")
-    @DisplayName(value = "test 1")
+//    @Tag(value = "dev")
+    //@Category(Smoke.class)
+//    @DisplayName(value = "test 1")
     void test1(){
         System.out.println("Test 1 calisti");
     }
     @Test
-    @Tag(value = "dev")
-    @DisplayName(value = "test 2")
+    @Order(1)
+    @Tag(value = "myTag")
+    @DisplayName(value = "test 2 burdaydi")
     void test2(){
+        Assertions.fail();
+
         System.out.println("Test 2 calisti");
     }
     @Test
-    @Tag(value = "dev")
+    @Tag(value = "myTag")
     @DisplayName(value = "test 3")
     void test3(){
         System.out.println("Test 3 calisti");
     }
     @Test
+    @Order(2)
     @Tag(value = "myTag")
     @DisplayName(value = "test 4")
     void test4(){
